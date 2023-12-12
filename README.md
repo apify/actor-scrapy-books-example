@@ -2,8 +2,6 @@
 
 This project serves as an example of Python Scrapy project. It scrapes book data from [books.toscrape.com](https://books.toscrape.com/).
 
-It was created as part of the [Handling data in Scrapy: databases and pipelines](https://www.notion.so/apify/Handling-data-in-Scrapy-databases-and-pipelines-b57b3d7b0ee54c739b196300c116b595) blog post.
-
 ## Getting Started
 
 ### Install Apify CLI
