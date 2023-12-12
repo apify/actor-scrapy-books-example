@@ -12,9 +12,9 @@ To use this scraper, you need to install the Apify CLI. Follow the instructions 
 
 ### Install Python and Virtualenv
 
-Make sure you have Python installed. If not, download it [here](https://www.python.org/).
+Make sure you have Python installed. If not, download it [here](https://www.python.org/). Any version supported by [Apify SDK](https://pypi.org/project/apify/) and [Scrapy](https://pypi.org/project/Scrapy/) should be fine.
 
-Additionally, install [virtualenv](https://pypi.org/project/virtualenv/) using the following command:
+Additionally, install [Virtualenv](https://pypi.org/project/virtualenv/) using the following command:
 
 ```bash
 pip install virtualenv
@@ -80,7 +80,7 @@ apify push
 
 To learn more about Apify and Actors, take a look at the following resources:
 
-- [Integrating Scrapy projects documentation](https://docs.apify.com/cli/docs/integrating-scrapy)
-- [Apify SDK for Python documentation](https://docs.apify.com/sdk/js)
-- [Apify Platform documentation](https://docs.apify.com/platform)
+- [Integrating Scrapy projects](https://docs.apify.com/cli/docs/integrating-scrapy)
+- [Apify SDK for Python](https://docs.apify.com/sdk/js)
+- [Apify Platform](https://docs.apify.com/platform)
 - [Join our developer community on Discord](https://discord.com/invite/jyEM2PRvMU)
