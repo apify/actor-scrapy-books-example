@@ -1,3 +1,3 @@
-apify[scrapy] ~= 1.4.0
+apify[scrapy] ~= 1.5.0
 nest-asyncio ~= 1.5.8
 scrapy ~= 2.11.0
