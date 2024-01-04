@@ -2,6 +2,16 @@
   "title": "actor-scrapy-books-example",
   "type": "object",
   "schemaVersion": 1,
-  "properties": {},
+  "properties": {
+    "proxyConfiguration": {
+      "sectionCaption": "Proxy and HTTP configuration",
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Specifies proxy servers that will be used by the scraper in order to hide its origin.",
+      "editor": "proxy",
+      "prefill": { "useApifyProxy": true },
+      "default": { "useApifyProxy": true }
+    }
+  },
   "required": []
 }
