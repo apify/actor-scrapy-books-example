@@ -1,39 +1,18 @@
-[tool.mypy]
-check_untyped_defs = true
-color_output = true
-disallow_incomplete_defs = true
-disallow_untyped_calls = true
-disallow_untyped_decorators = true
-disallow_untyped_defs = true
-error_summary = true
-files = ["books_scraper"]
-ignore_missing_imports = true
-no_implicit_optional = true
-pretty = true
-python_version = 3.11
-show_absolute_path = false
-show_error_codes = true
-warn_redundant_casts = true
-warn_return_any = true
-warn_unreachable = true
-warn_unused_ignores = true
-
-[tool.pytest]
-asyncio_mode = "auto"
-python_files = "test_*.py"
-testpaths = "tests"
-timeout = 1200
-include_trailing_comma = true
-
 [tool.ruff]
 line-length = 120
+
+[tool.ruff.lint]
 select = ["ALL"]
 ignore = [
+    "ANN101",  # Missing type annotation for `{name}` in method
+    "ANN102",  # Missing type annotation for `{name}` in classmethod
     "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed in {filename}
     "BLE001",  # Do not catch blind exception
     "C901",    # `{name}` is too complex
     "COM812",  # This rule may cause conflicts when used with the formatter
-    "D",       # Everything from the pydocstyle
+    "D100",    # Missing docstring in public module
+    "D104",    # Missing docstring in public package
+    "D107",    # Missing docstring in `__init__`
     "EM",      # flake8-errmsg
     "G004",    # Logging statement uses f-string
     "ISC001",  # This rule may cause conflicts when used with the formatter
@@ -52,8 +31,9 @@ ignore = [
     "S303",    # Use of insecure MD2, MD4, MD5, or SHA1 hash function
     "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes
     "TD002",   # Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...
-    "TID252",  # Relative imports from parent modules are bannedRuff
     "TRY003",  # Avoid specifying long messages outside the exception class
+    #
+    "D",
 ]
 
 [tool.ruff.format]
@@ -75,6 +55,7 @@ indent-style = "space"
     "INP001",  # File {filename} is part of an implicit namespace package, add an __init__.py
     "PLR2004", # Magic value used in comparison, consider replacing {value} with a constant variable
     "S101",    # Use of assert detected
+    "SLF001",  # Private member accessed: `{name}`
     "T20",     # flake8-print
     "TRY301",  # Abstract `raise` to an inner function
 ]
@@ -83,8 +64,33 @@ indent-style = "space"
 docstring-quotes = "double"
 inline-quotes = "single"
 
-[tool.ruff.lint.isort]
-known-first-party = ["apify", "apify_client", "apify_shared"]
-
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.ruff.lint.isort]
+known-third-party = "apify"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+asyncio_mode = "auto"
+timeout = 1200
+
+[tool.mypy]
+python_version = "3.12"
+files = ["scripts", "src", "tests"]
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_ignores = true
+
+[tool.mypy-scrapy]
+ignore_missing_imports = true
+
+[tool.mypy-sortedcollections]
+ignore_missing_imports = true

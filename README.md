@@ -25,7 +25,7 @@ pip install virtualenv
 Create a Python virtual environment by running:
 
 ```bash
-python3.11 -m virtualenv .venv
+python3.12 -m virtualenv .venv
 ```
 
 Activate the virtual environment:
@@ -53,7 +53,7 @@ scrapy crawl book_spider -o books.json
 Run the scraper as an Apify Actor using:
 
 ```bash
-apify run
+apify run --purge
 ```
 
 ## Deploy on Apify
