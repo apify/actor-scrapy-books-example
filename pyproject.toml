@@ -68,7 +68,7 @@ inline-quotes = "single"
 convention = "google"
 
 [tool.ruff.lint.isort]
-known-third-party = "apify"
+known-first-party = ["apify"]
 
 [tool.pytest.ini_options]
 addopts = "-ra"
