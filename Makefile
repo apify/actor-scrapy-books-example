@@ -6,8 +6,8 @@ clean:
 	rm -rf .venv .mypy_cache .pytest_cache .ruff_cache __pycache__
 
 install-dev:
-	python3.11 -m pip install --upgrade pip
-	python3.11 -m pip install --no-interaction --no-ansi --no-cache-dir --requirement requirements.txt --requirement requirements-dev.txt
+	python3 -m pip install --upgrade pip
+	python3 -m pip install --no-interaction --no-ansi --no-cache-dir --requirement requirements.txt --requirement requirements-dev.txt
 	pre-commit install
 
 lint:
