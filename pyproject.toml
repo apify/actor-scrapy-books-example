@@ -1,7 +1,7 @@
 [project]
-name = "actor-scrapy-books-example"
+name = "scrapy-books-example"
 version = "0.1.0"
-description = "Actor scraping books example using Scrapy and Apify SDK."
+description = "Example Actor scraping books using Scrapy and Apify SDK."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -12,7 +12,6 @@ dependencies = [
 [dependency-groups]
 dev = [
     "mypy~=1.16.0",
-    "pre-commit~=4.2.0",
     "ruff~=0.12.0",
 ]
 

@@ -1,11 +1,10 @@
 .PHONY: clean install-dev lint type-check check-code format
 
 clean:
-	rm -rf .venv .mypy_cache .pytest_cache .ruff_cache __pycache__
+	rm -rf .venv .mypy_cache .pytest_cache .ruff_cache __pycache__ storage
 
 install-dev:
 	uv sync --all-extras
-	uv run pre-commit install
 
 lint:
 	uv run ruff format --check

@@ -12,32 +12,26 @@ To use this scraper, you need to install the Apify CLI. Follow the instructions 
 
 Make sure you have Python installed. If not, download it [here](https://www.python.org/). Any version supported by [Apify SDK](https://pypi.org/project/apify/) and [Scrapy](https://pypi.org/project/Scrapy/) should be fine.
 
-Additionally, install [Virtualenv](https://pypi.org/project/virtualenv/) using the following command:
+Additionally, install [uv](https://docs.astral.sh/uv/) package manager.
 
 ```bash
-pip install virtualenv
+pip install uv
 ```
 
 ## Run the Actor locally
 
 ### Prepare Python environment
 
-Create a Python virtual environment by running:
+Install Python dependencies:
 
 ```bash
-python3.12 -m virtualenv .venv
+make install-dev
 ```
 
 Activate the virtual environment:
 
 ```bash
 source .venv/bin/activate
-```
-
-Install Python dependencies:
-
-```bash
-pip install -r requirements.txt -r requirements-dev.txt
 ```
 
 ### Run the scraper as Scrapy project
