@@ -1,8 +1,8 @@
 {
   "actorSpecification": 1,
-  "name": "actor-scrapy-books-example",
+  "name": "scrapy-books-example",
   "title": "Scrapy Books Example",
-  "description": "Python Scrapy Books project wrapped using the Apify CLI.",
+  "description": "Example Actor scraping books using Scrapy and Apify SDK.",
   "version": "0.0",
   "meta": {
     "templateId": "python-scrapy"
