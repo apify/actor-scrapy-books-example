@@ -4,8 +4,8 @@ LOG_LEVEL = "INFO"
 # Set depth limit to 50 since there are 50 pages of books on the books.toscrape.com
 DEPTH_LIMIT = 50
 
-SPIDER_MODULES = ["books_scraper.spiders"]
-NEWSPIDER_MODULE = "books_scraper.spiders"
+SPIDER_MODULES = ["src.spiders"]
+NEWSPIDER_MODULE = "src.spiders"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -16,5 +16,5 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
 ITEM_PIPELINES = {
-    "books_scraper.pipelines.CleaningPipeline": 100,
+    "src.pipelines.CleaningPipeline": 100,
 }

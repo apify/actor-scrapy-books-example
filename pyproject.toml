@@ -1,12 +1,12 @@
 [project]
 name = "scrapy-books-example"
-version = "0.1.0"
-description = "Example Actor scraping books using Scrapy and Apify SDK."
+version = "0.0.0" # not used by Apify
+description = "" # not used by Apify
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "apify[scrapy]~=2.6.0",
-    "scrapy~=2.11.0",
+    "apify[scrapy] < 3.0.0",
+    "scrapy < 3.0.0",
 ]
 
 [dependency-groups]
@@ -17,7 +17,7 @@ dev = [
 
 [tool.ruff]
 line-length = 120
-include = ["books_scraper/**/*.py"]
+include = ["src/**/*.py"]
 
 [tool.ruff.lint.per-file-ignores]
 "**/__init__.py" = [
@@ -28,7 +28,7 @@ include = ["books_scraper/**/*.py"]
 ]
 
 [tool.mypy]
-files = ["books_scraper"]
+files = ["src"]
 
 [[tool.mypy.overrides]]
 module = [

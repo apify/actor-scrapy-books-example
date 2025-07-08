@@ -14,7 +14,7 @@ from apify.scrapy import initialize_logging, run_scrapy_actor
 from .main import main
 
 # Ensure the location to the Scrapy settings module is defined.
-os.environ["SCRAPY_SETTINGS_MODULE"] = "books_scraper.settings"
+os.environ["SCRAPY_SETTINGS_MODULE"] = "src.settings"
 
 
 if __name__ == "__main__":
