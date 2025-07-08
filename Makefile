@@ -1,7 +1,9 @@
-.PHONY: clean install-dev lint type-check check-code format
+# This is used by the Github Actions to run the static analysis.
+
+.PHONY: clean install-dev lint type-check format check-code
 
 clean:
-	rm -rf .venv .mypy_cache .pytest_cache .ruff_cache __pycache__ storage
+	rm -rf .mypy_cache .pytest_cache .ruff_cache build dist htmlcov .coverage
 
 install-dev:
 	uv sync --all-extras
@@ -13,8 +15,8 @@ lint:
 type-check:
 	uv run mypy
 
-check-code: lint type-check
-
 format:
 	uv run ruff check --fix
 	uv run ruff format
+
+check-code: lint type-check
