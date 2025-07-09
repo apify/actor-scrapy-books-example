@@ -1,6 +1,6 @@
 FROM apify/actor-python:3.13
 
-ENV ACTOR_NAME="src"
+ENV ACTOR_DIR="src"
 ENV UV_VERSION="0.7"
 
 WORKDIR /usr/src/app
@@ -23,10 +23,10 @@ RUN uv export --no-hashes --no-dev | \
 
 # Copy the source code of the Actor.
 COPY .actor ./.actor
-COPY ${ACTOR_NAME}/ ./${ACTOR_NAME}/
+COPY ${ACTOR_DIR}/ ./${ACTOR_DIR}/
 
 # Use compileall to ensure the runnability of the Actor Python code.
-RUN uv run python -m compileall -q ${ACTOR_NAME}
+RUN uv run python -m compileall -q ${ACTOR_DIR}
 
 # Specify how to launch the source code of your Actor.
-CMD ["sh", "-c", "uv run python -m ${ACTOR_NAME}"]
+CMD ["sh", "-c", "uv run python -m ${ACTOR_DIR}"]
