@@ -11,8 +11,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "mypy~=1.16.0",
-    "ruff~=0.12.0",
+    "poethepoet<1.0.0",
+    "ruff~=0.14.0",
+    "ty~=0.0.0",
 ]
 
 [tool.ruff]
@@ -27,11 +28,25 @@ include = ["src/**/*.py"]
     "E402", # Module level import not at top of file
 ]
 
-[tool.mypy]
-files = ["src"]
+[tool.ty.environment]
+python-version = "3.13"
 
-[[tool.mypy.overrides]]
-module = [
-    'scrapy.*',
-]
-ignore_missing_imports = true
+[tool.ty.src]
+include = ["src"]
+
+# The src directory uses relative imports as it's run as a package (python -m src).
+# ty doesn't fully support this pattern yet, so we ignore unresolved-import errors.
+[tool.ty.rules]
+unresolved-import = "ignore"
+
+[tool.poe.tasks]
+clean = "rm -rf .ty_cache .pytest_cache .ruff_cache build dist htmlcov .coverage"
+install-dev = "uv sync --all-extras"
+type-check = "uv run ty check"
+check-code = ["lint", "type-check"]
+
+[tool.poe.tasks.lint]
+shell = "uv run ruff format --check && uv run ruff check"
+
+[tool.poe.tasks.format]
+shell = "uv run ruff check --fix && uv run ruff format"

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, Generator
 
 from scrapy import Request, Spider
 
@@ -17,7 +17,7 @@ class BookSpider(Spider):
     start_urls = ["https://books.toscrape.com/"]
     allowed_domains = ["books.toscrape.com"]
 
-    def parse(self, response: Response) -> Generator[BookItem | Request, None, None]:
+    def parse(self, response: Response, **kwargs: Any) -> Generator[BookItem | Request, None, None]:  # noqa: ARG002
         self.logger.info("BookSpider is parsing %s...", response)
         articles = response.css("article.product_pod")
 
