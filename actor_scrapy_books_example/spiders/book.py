@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 from scrapy import Spider
 
-from src.items import BookItem
+from actor_scrapy_books_example.items import BookItem
 
 if TYPE_CHECKING:
     from collections.abc import Generator
