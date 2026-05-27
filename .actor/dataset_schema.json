@@ -1,7 +1,30 @@
 {
   "$schema": "https://apify.com/schemas/v1/dataset.ide.json",
   "actorSpecification": 1,
-  "fields": {},
+  "fields": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "description": "Book title."
+      },
+      "price": {
+        "type": "number",
+        "description": "Price in GBP."
+      },
+      "rating": {
+        "type": "integer",
+        "description": "Star rating, 1–5.",
+        "minimum": 1,
+        "maximum": 5
+      },
+      "in_stock": {
+        "type": "boolean",
+        "description": "Whether the book is available in stock."
+      }
+    },
+    "required": ["title", "price", "rating", "in_stock"]
+  },
   "views": {
     "overview": {
       "title": "Books",
