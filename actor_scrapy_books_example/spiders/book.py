@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from collections.abc import Generator
 
     from scrapy import Request
-    from scrapy.responsetypes import Response
+    from scrapy.http import Response
 
 
 class BookSpider(Spider):
@@ -32,9 +32,11 @@ class BookSpider(Spider):
                 title=(article.css('h3 > a::attr(title)').get() or '').strip(),
                 price=(article.css('.price_color::text').get() or '').strip(),
                 rating=(article.css('.star-rating::attr(class)').get() or '').strip(),
-                in_stock=article.css('.instock.availability::text').getall()[1].strip(),
+                # `::text` returns several nodes split by the inner <i> icon; join them so we
+                # capture the availability text regardless of how the markup is whitespaced.
+                in_stock=' '.join(article.css('.instock.availability::text').getall()).strip(),
             )
 
-        next_page_link = response.css('li.next a::attr(href)').extract_first()
+        next_page_link = response.css('li.next a::attr(href)').get()
         if next_page_link:
             yield response.follow(next_page_link)
