@@ -3,44 +3,69 @@ name = "scrapy-books-example"
 version = "0.0.0" # not used by Apify
 description = "" # not used by Apify
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
-    "apify[scrapy] < 3.0.0",
+    "apify[scrapy] >= 3.0.0, < 4.0.0",
     "scrapy < 3.0.0",
 ]
 
 [dependency-groups]
 dev = [
-    "poethepoet<1.0.0",
-    "ruff~=0.14.0",
-    "ty~=0.0.0",
+    "poethepoet",
+    "ruff",
+    "ty",
 ]
+
+[tool.uv]
+package = false
 
 [tool.ruff]
 line-length = 120
-include = ["src/**/*.py"]
+include = ["actor_scrapy_books_example/**/*.py"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812", # This rule may cause conflicts when used with the formatter
+    "D100",   # Missing docstring in public module
+    "D104",   # Missing docstring in public package
+    "D107",   # Missing docstring in `__init__`
+    "D203",   # One blank line required before class docstring
+    "D213",   # Multi-line docstring summary should start at the second line
+    "D413",   # Missing blank line after last section
+    "EM",     # flake8-errmsg
+    "ISC001", # This rule may cause conflicts when used with the formatter
+    "TRY003", # Avoid specifying long messages outside the exception class
+]
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
 
 [tool.ruff.lint.per-file-ignores]
 "**/__init__.py" = [
     "F401", # Unused imports
 ]
 "**/__main__.py" = [
-    "E402", # Module level import not at top of file
+    "E402", # Module-level import not at top of file (Scrapy reactor must be installed first)
 ]
 
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "single"
+
 [tool.ty.environment]
-python-version = "3.13"
+python-version = "3.14"
 
 [tool.ty.src]
-include = ["src"]
+include = ["actor_scrapy_books_example"]
 
-# The src directory uses relative imports as it's run as a package (python -m src).
-# ty doesn't fully support this pattern yet, so we ignore unresolved-import errors.
+# Run as `python -m actor_scrapy_books_example` from the repo root; ty doesn't fully
+# resolve this run-as-package pattern yet, so we ignore unresolved-import errors.
 [tool.ty.rules]
 unresolved-import = "ignore"
 
 [tool.poe.tasks]
-clean = "rm -rf .ty_cache .pytest_cache .ruff_cache build dist htmlcov .coverage"
 install-dev = "uv sync --all-extras"
 type-check = "uv run ty check"
 check-code = ["lint", "type-check"]
@@ -50,3 +75,10 @@ shell = "uv run ruff format --check && uv run ruff check"
 
 [tool.poe.tasks.format]
 shell = "uv run ruff check --fix && uv run ruff format"
+
+[tool.poe.tasks.clean]
+shell = """
+rm -rf .ruff_cache .ty_cache .venv
+find . -type d -name __pycache__ -prune -exec rm -rf {} +
+uv cache clean
+"""

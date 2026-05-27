@@ -4,6 +4,8 @@ import scrapy
 
 
 class BookItem(scrapy.Item):
+    """A scraped book: title, rating, price, and stock status."""
+
     title = scrapy.Field()
     rating = scrapy.Field()
     price = scrapy.Field()

@@ -1,5 +1,6 @@
 {
-  "title": "scrapy-books-example",
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Scrapy Books Example",
   "type": "object",
   "schemaVersion": 1,
   "properties": {

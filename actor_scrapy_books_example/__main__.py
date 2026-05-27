@@ -4,7 +4,7 @@ from scrapy.utils.reactor import install_reactor
 
 # Install Twisted's asyncio reactor before importing any other Twisted or
 # Scrapy components.
-install_reactor("twisted.internet.asyncioreactor.AsyncioSelectorReactor")
+install_reactor('twisted.internet.asyncioreactor.AsyncioSelectorReactor')
 
 import os
 
@@ -14,9 +14,9 @@ from apify.scrapy import initialize_logging, run_scrapy_actor
 from .main import main
 
 # Ensure the location to the Scrapy settings module is defined.
-os.environ["SCRAPY_SETTINGS_MODULE"] = "src.settings"
+os.environ['SCRAPY_SETTINGS_MODULE'] = 'actor_scrapy_books_example.settings'
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     initialize_logging()
     run_scrapy_actor(main())

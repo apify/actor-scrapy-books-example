@@ -1,78 +1,35 @@
-# Actor Scrapy Books Example
+# Scrapy Books Example
 
-This project serves as an example of Python Scrapy project. It scrapes book data from [books.toscrape.com](https://books.toscrape.com/).
+An example [Scrapy](https://scrapy.org/) project wrapped as an Apify Actor. It scrapes book data (title, price, rating, availability) from [books.toscrape.com](https://books.toscrape.com/) and stores each book in the run's default dataset.
 
-## Getting Started
+It shows how to run an existing Scrapy spider on the Apify platform — see [Integrating Scrapy projects](https://docs.apify.com/cli/docs/integrating-scrapy).
 
-### Install Apify CLI
+## Run locally
 
-To use this scraper, you need to install the Apify CLI. Follow the instructions [here](https://docs.apify.com/cli/docs/installation).
-
-### Install Python and Virtualenv
-
-Make sure you have Python installed. If not, download it [here](https://www.python.org/). Any version supported by [Apify SDK](https://pypi.org/project/apify/) and [Scrapy](https://pypi.org/project/Scrapy/) should be fine.
-
-Additionally, install [uv](https://docs.astral.sh/uv/) package manager.
+This is a [uv](https://docs.astral.sh/uv/)-managed project. You'll also need the [Apify CLI](https://docs.apify.com/cli/docs/installation).
 
 ```bash
-pip install uv
+uv sync                # install dependencies into .venv/
+apify run --purge      # run as an Apify Actor (reads local INPUT.json)
 ```
 
-## Run the Actor locally
-
-### Prepare Python environment
-
-Install Python dependencies:
+It also still runs as a plain Scrapy project:
 
 ```bash
-make install-dev
+uv run scrapy crawl book_spider -o books.json
 ```
 
-Activate the virtual environment:
+## Deploy to Apify
 
 ```bash
-source .venv/bin/activate
+apify login            # once, with your API token
+apify push             # build and deploy the Actor
 ```
 
-### Run the scraper as Scrapy project
+Find your deployed Actor under [Actors → My Actors](https://console.apify.com/actors?tab=my).
 
-The project is still runnable as a Scrapy project. Execute the following command:
-
-```bash
-scrapy crawl book_spider -o books.json
-```
-
-### Run the scraper as Apify Actor
-
-Run the scraper as an Apify Actor using:
-
-```bash
-apify run --purge
-```
-
-## Deploy on Apify
-
-### Log in to Apify
-
-You will need to provide your [Apify API Token](https://console.apify.com/account/integrations) to complete this action.
-
-```bash
-apify login
-```
-
-### Deploy your Actor
-
-This command will deploy and build the Actor on the Apify Platform. You can find your newly created Actor under [Actors -> My Actors](https://console.apify.com/actors?tab=my).
-
-```Bash
-apify push
-```
-
-## Documentation reference
-
-To learn more about Apify and Actors, take a look at the following resources:
+## Learn more
 
 - [Integrating Scrapy projects](https://docs.apify.com/cli/docs/integrating-scrapy)
-- [Apify SDK for Python](https://docs.apify.com/sdk/js)
-- [Apify Platform](https://docs.apify.com/platform)
-- [Join our developer community on Discord](https://discord.com/invite/jyEM2PRvMU)
+- [Apify SDK for Python](https://docs.apify.com/sdk/python)
+- [Apify platform docs](https://docs.apify.com/platform)
