@@ -1,34 +1,40 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Generator
+from typing import TYPE_CHECKING
 
-from scrapy import Request, Spider
+from scrapy import Spider
 
-from ..items import BookItem
+from src.items import BookItem
 
 if TYPE_CHECKING:
+    from collections.abc import Generator
+
+    from scrapy import Request
     from scrapy.responsetypes import Response
 
 
 class BookSpider(Spider):
     """Scrape books from https://books.toscrape.com/."""
 
-    name = "book_spider"
-    start_urls = ["https://books.toscrape.com/"]
-    allowed_domains = ["books.toscrape.com"]
+    name = 'book_spider'
+    # Scrapy treats these as class-level configuration, so RUF012 (ClassVar) does not apply;
+    # annotating them as ClassVar also conflicts with Spider's base attribute types.
+    start_urls = ['https://books.toscrape.com/']  # noqa: RUF012
+    allowed_domains = ['books.toscrape.com']  # noqa: RUF012
 
-    def parse(self, response: Response, **kwargs: Any) -> Generator[BookItem | Request, None, None]:  # noqa: ARG002
-        self.logger.info("BookSpider is parsing %s...", response)
-        articles = response.css("article.product_pod")
+    def parse(self, response: Response) -> Generator[BookItem | Request]:
+        """Parse a listing page, yielding a book item per product and following pagination."""
+        self.logger.info('BookSpider is parsing %s...', response)
+        articles = response.css('article.product_pod')
 
         for article in articles:
             yield BookItem(
-                title=article.css("h3 > a::attr(title)").get().strip(),
-                price=article.css(".price_color::text").get().strip(),
-                rating=article.css(".star-rating::attr(class)").get().strip(),
-                in_stock=article.css(".instock.availability::text").getall()[1].strip(),
+                title=(article.css('h3 > a::attr(title)').get() or '').strip(),
+                price=(article.css('.price_color::text').get() or '').strip(),
+                rating=(article.css('.star-rating::attr(class)').get() or '').strip(),
+                in_stock=article.css('.instock.availability::text').getall()[1].strip(),
             )
 
-        next_page_link = response.css("li.next a::attr(href)").extract_first()
+        next_page_link = response.css('li.next a::attr(href)').extract_first()
         if next_page_link:
             yield response.follow(next_page_link)
