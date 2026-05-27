@@ -61,7 +61,7 @@ Makefile was replaced by poe, and the Actor runs via `python -m ...`.
   `__main__.py`'s late imports keep `# noqa: E402` (reactor must install first).
 - ruff: line length 120, single quotes, `select = ["ALL"]` with the ignores in
   `pyproject.toml`; types via ty. Keep `uv run poe check-code` green.
-- Python 3.13 across `.python-version`, ty, CI, and the Docker base.
+- Python 3.14 across `.python-version`, ty, CI, and the Docker base.
 - The Dockerfile uses the uv-in-Docker BuildKit pattern (uv binary from
   `ghcr.io/astral-sh/uv:0.11`, `uv sync --locked --no-dev`); build with BuildKit.
 - Commit `uv.lock` whenever dependencies change.

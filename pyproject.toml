@@ -3,7 +3,7 @@ name = "scrapy-books-example"
 version = "0.0.0" # not used by Apify
 description = "" # not used by Apify
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
     "apify[scrapy] >= 3.0.0, < 4.0.0",
     "scrapy < 3.0.0",
@@ -55,7 +55,7 @@ docstring-quotes = "double"
 inline-quotes = "single"
 
 [tool.ty.environment]
-python-version = "3.13"
+python-version = "3.14"
 
 [tool.ty.src]
 include = ["actor_scrapy_books_example"]
