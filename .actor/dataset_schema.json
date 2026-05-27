@@ -1,0 +1,22 @@
+{
+  "$schema": "https://apify.com/schemas/v1/dataset.ide.json",
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Books",
+      "transformation": {
+        "fields": ["title", "price", "rating", "in_stock"]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "title": { "label": "Title", "format": "text" },
+          "price": { "label": "Price (£)", "format": "number" },
+          "rating": { "label": "Rating", "format": "number" },
+          "in_stock": { "label": "In stock", "format": "boolean" }
+        }
+      }
+    }
+  }
+}

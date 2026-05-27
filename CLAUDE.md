@@ -35,7 +35,8 @@ into the image.
   - `pipelines.py` — `CleaningPipeline`: normalizes price→float, rating→int,
     in_stock→bool.
   - `settings.py` — Scrapy settings (asyncio reactor, robots obey, pipelines).
-- `.actor/` — Apify manifest, `input_schema.json`, `Dockerfile`.
+- `.actor/` — Apify manifest, `input_schema.json`, `output_schema.json`,
+  `dataset_schema.json`, `Dockerfile`.
 
 ## Commands
 

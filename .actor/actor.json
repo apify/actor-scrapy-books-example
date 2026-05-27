@@ -1,12 +1,19 @@
 {
+  "$schema": "https://apify.com/schemas/v1/actor.ide.json",
   "actorSpecification": 1,
   "name": "scrapy-books-example",
   "title": "Scrapy Books Example",
   "description": "Example Actor scraping books using Scrapy and Apify SDK.",
   "version": "0.0",
+  "buildTag": "latest",
   "meta": {
-    "templateId": "python-scrapy"
+    "templateId": "python-scrapy",
+    "generatedBy": "Claude Code with Claude Opus 4.7"
   },
   "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
   "dockerfile": "./Dockerfile"
 }
